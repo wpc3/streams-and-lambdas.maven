@@ -43,9 +43,11 @@ public final class PersonFactory {
      * @return - ArrayList of Person objects
      */ // TODO
     public List<Person> createPersonList(int listSize) {
-        List<Person> personList = new ArrayList<>(listSize);
 
-        return personList;
+//        List<Person> personList =
+
+
+      return Stream.generate(this::createRandomPerson).limit(listSize).collect(Collectors.toList());
     }
 
 
@@ -54,9 +56,9 @@ public final class PersonFactory {
      * @return - Array of Person objects
      */ // TODO
     public Person[] createPersonArray(int arrayLength) {
-        Person[] people = new Person[arrayLength];
 
-        return people;
+
+        return Stream.generate(this::createRandomPerson).limit(arrayLength).toArray(Person[]::new);
     }
 
 
@@ -70,6 +72,6 @@ public final class PersonFactory {
 
         List<Person> personList = new ArrayList<>(streamCount);
 
-        return personList.stream();
+        return Stream.generate(this::createRandomPerson).limit(streamCount);
     }
 }
